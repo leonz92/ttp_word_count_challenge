@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App () {
   const [charCount, setCharCount] = useState(0);
@@ -29,13 +29,29 @@ function App () {
   function handleAnalyze(e) {
     e.preventDefault();
     let text = document.getElementById('input-text').value.trimEnd();
-    let words = text.replace(/[.?!,]/g, '').split(' ');
-    let sentences = text.split(/[.?!]/g).filter((sentence) => sentence != '');
-    let paragraphs = text.split(/\n/).filter((paragraph) => paragraph != '');
+    let words = text.replace(/[.?!,]/g, '').split(' ').filter((word) => word !== '');
+    let sentences = text.split(/[.?!]/g).filter((sentence) => sentence !== '');
+    let paragraphs = text.split(/\n/).filter((paragraph) => paragraph !== '');
     setCharCount(text.length);
     setWordCount(words.length);
     setSentenceCount(sentences.length);
     setParaCount(paragraphs.length);
+
+    let bigrams = {};
+    let bigramWords = text.split(' ');
+    for (let i = 0; i < bigramWords.length - 1; i++) {
+      let currWord = bigramWords[i];
+      let combined = currWord + ' ' + bigramWords[i + 1];
+      if (currWord.search(/[.?!]/)>0) {
+        continue;
+      }
+      if (bigrams[combined]) {
+        bigrams[combined]++;
+      } else {
+        bigrams[combined] = 1;
+      }
+    }
+    setBigramCount(Object.keys(bigrams).length);
   };
 
 	return (

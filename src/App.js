@@ -1,7 +1,14 @@
 import './App.css';
+import React, { useState } from 'react';
 
 function App () {
-  function readAloud(e) {
+  const [charCount, setCharCount] = useState(0);
+  const [wordCount, setWordCount] = useState(0);
+  const [sentenceCount, setSentenceCount] = useState(0);
+	const [paraCount, setParaCount] = useState(0);
+  const [bigramCount, setBigramCount] = useState(0);
+
+  function handleReadAloud(e) {
     e.preventDefault();
     if ('speechSynthesis' in window) {
       // Speech Synthesis supported
@@ -12,20 +19,26 @@ function App () {
       } else {
         msg.text = document.getElementById('input-text').value;
       }
-      msg.volume = 1;
-      console.log(msg);
       window.speechSynthesis.speak(msg);
     } else {
       // Speech Synthesis Not Supported
       alert("Sorry, your browser doesn't support text to speech!");
     }
-  }
+  };
+
+  function handleAnalyze(e) {
+    e.preventDefault();
+    let text = document.getElementById('input-text').value.trimEnd();
+    let words = text.replace(/[.?!,]/g, '').split(' ');
+    setCharCount(text.length);
+    setWordCount(words.length);
+
+  };
 
 	return (
 		<div className='App'>
-			<header className="App-header">
-        TTP Word Count Challenge
-      </header>
+			<header className='App-header'>TTP Word Count Challenge</header>
+
 			<div id='input-text-form'>
 				<form>
 					<label>Input Text Here:</label>
@@ -33,18 +46,19 @@ function App () {
 						id='input-text'
 						style={{ width: 65 + 'vw', height: 30 + 'vh' }}
 					></textarea>
-					<button>Analyze</button>
-          <button onClick={readAloud}>Read Aloud</button>
-          <button>Dictionary</button>
-          <button>Thesaurus</button>
+					<button onClick={handleAnalyze}>Analyze</button>
+					<button onClick={handleReadAloud}>Read Aloud</button>
+					<button>Dictionary</button>
+					<button>Thesaurus</button>
 				</form>
 			</div>
+
 			<div id='stats'>
-				<p>Character Count: 0</p>
-				<p>Word Count: 0</p>
-				<p>Sentence Count: 0</p>
-				<p>Paragraph Count: 0</p>
-				<p>Bigrams: 0</p>
+				<p>Character Count: {charCount}</p>
+				<p>Word Count: {wordCount}</p>
+				<p>Sentence Count: {sentenceCount}</p>
+        <p>Paragraph Count: {paraCount}</p>
+				<p>Bigrams: {bigramCount}</p>
 				<p>Reading Level: ???</p>
 			</div>
 		</div>

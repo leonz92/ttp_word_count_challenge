@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 function App () {
   const [charCount, setCharCount] = useState(0);
@@ -57,26 +57,34 @@ function App () {
 	return (
 		<div className='App'>
 			<header className='App-header'>TTP Word Count Challenge</header>
-			<div id='input-text-form'>
-				<form>
-					<label>Input Text Here:</label>
-					<textarea
-						id='input-text'
-						style={{ width: 65 + 'vw', height: 30 + 'vh' }}
-					></textarea>
-					<button onClick={handleAnalyze}>Analyze</button>
-					<button onClick={handleReadAloud}>Read Aloud</button>
-					<button>Dictionary</button>
-					<button>Thesaurus</button>
-				</form>
-			</div>
-			<div id='stats'>
-				<p>Character Count: {charCount}</p>
-				<p>Word Count: {wordCount}</p>
-				<p>Sentence Count: {sentenceCount}</p>
-        <p>Paragraph Count: {paraCount}</p>
-				<p>Bigrams: {bigramCount}</p>
-				<p>Reading Level: ???</p>
+			<div id='grid'>
+				<div id='left'>
+					<form id='input-text-form'>
+						<label>Input Text Here:</label>
+						<textarea id='input-text'></textarea>
+						<div id='left-buttons'>
+							<button onClick={handleReadAloud}>Read Aloud</button>
+							<button>Clear</button>
+						</div>
+					</form>
+				</div>
+
+				<div id='right'>
+					<button className='accordion'>Stats</button>
+					<div className='panel'>
+						<p>Character Count: {charCount}</p>
+						<p>Word Count: {wordCount}</p>
+						<p>Sentence Count: {sentenceCount}</p>
+						<p>Paragraph Count: {paraCount}</p>
+						<p>Bigram Count: {bigramCount}</p>
+					</div>
+					<button className='accordion'>Dictionary</button>
+          <div className='panel'>
+            <label>Search Word</label>
+            <input type='text'></input>
+            
+					</div>
+				</div>
 			</div>
 		</div>
 	);

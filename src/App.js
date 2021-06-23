@@ -31,9 +31,12 @@ function App () {
     let text = document.getElementById('input-text').value.trimEnd();
     let words = text.replace(/[.?!,]/g, '').split(' ');
     let sentences = text.split(/[.?!]/g).filter((sentence) => sentence != '');
+    let paragraphs = text.split(/\n/).filter((paragraph) => paragraph != '');
+    console.log(paragraphs)
     setCharCount(text.length);
     setWordCount(words.length);
     setSentenceCount(sentences.length);
+    setParaCount(paragraphs.length);
   };
 
 	return (

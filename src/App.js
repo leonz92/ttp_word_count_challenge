@@ -30,15 +30,15 @@ function App () {
     e.preventDefault();
     let text = document.getElementById('input-text').value.trimEnd();
     let words = text.replace(/[.?!,]/g, '').split(' ');
+    let sentences = text.split(/[.?!]/g).filter((sentence) => sentence != '');
     setCharCount(text.length);
     setWordCount(words.length);
-
+    setSentenceCount(sentences.length);
   };
 
 	return (
 		<div className='App'>
 			<header className='App-header'>TTP Word Count Challenge</header>
-
 			<div id='input-text-form'>
 				<form>
 					<label>Input Text Here:</label>
@@ -52,7 +52,6 @@ function App () {
 					<button>Thesaurus</button>
 				</form>
 			</div>
-
 			<div id='stats'>
 				<p>Character Count: {charCount}</p>
 				<p>Word Count: {wordCount}</p>

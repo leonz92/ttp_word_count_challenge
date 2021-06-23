@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+// import getDefinition from './services/word';
 
 function App () {
   const [charCount, setCharCount] = useState(0);
@@ -7,6 +8,10 @@ function App () {
   const [sentenceCount, setSentenceCount] = useState(0);
 	const [paraCount, setParaCount] = useState(0);
   const [bigramCount, setBigramCount] = useState(0);
+  const [searchWord, setSearchWord] = useState('');
+  const [definitions, setDefinitions] = useState('');
+  const [synonyms, setSynonyms] = useState([])
+  const [readability, setReadability] = useState({});
 
   function handleReadAloud(e) {
     e.preventDefault();
@@ -54,6 +59,46 @@ function App () {
     setBigramCount(Object.keys(bigrams).length);
   };
 
+  function getDefinition (e) {
+    e.preventDefault()
+    return fetch(`https://api.dictionaryapi.dev/api/v2/entries/en_US/${searchWord}`,
+      {
+        method: 'GET'
+      })
+      .then((res) => res.json())
+      .then(response => {
+        setDefinitions(response[0].meanings[0].definitions[0].definition);
+        if (response[0].meanings[0].definitions[0].synonyms.length > 1) {
+					setSynonyms(response[0].meanings[0].definitions[0].synonyms);
+        }
+      })
+      .catch((error) => console.log(error));
+  }
+
+  function handleScan (e) {
+    e.preventDefault();
+    let text = document.getElementById('input-text').value.trimEnd().replaceAll(/\s/g, '%20');
+    fetch(
+			`https://ipeirotis-readability-metrics.p.rapidapi.com/getReadabilityMetrics?text=${text}`,
+			{
+				method: 'POST',
+				headers: {
+					'x-rapidapi-key': 'c2327d20c8msh05aae38bc671015p194bdajsn76c08a1cb8ba',
+					'x-rapidapi-host': 'ipeirotis-readability-metrics.p.rapidapi.com',
+				},
+			}
+		)
+      .then((response) => response.json())
+      .then(res => {
+        // console.log(res);
+        setReadability(res);
+        console.log(readability);
+      })
+			.catch((err) => {
+				console.error(err);
+			});
+  }
+
 	return (
 		<div className='App'>
 			<header className='App-header'>TTP Word Count Challenge</header>
@@ -72,17 +117,50 @@ function App () {
 				<div id='right'>
 					<button className='accordion'>Stats</button>
 					<div className='panel'>
+						<button onClick={handleAnalyze}>Analyze</button>
 						<p>Character Count: {charCount}</p>
 						<p>Word Count: {wordCount}</p>
 						<p>Sentence Count: {sentenceCount}</p>
 						<p>Paragraph Count: {paraCount}</p>
 						<p>Bigram Count: {bigramCount}</p>
 					</div>
+
 					<button className='accordion'>Dictionary</button>
-          <div className='panel'>
-            <label>Search Word</label>
-            <input type='text'></input>
-            
+					<div className='panel'>
+						<label>Search Word</label>
+						<input
+							type='text'
+							value={searchWord}
+							onChange={(e) => setSearchWord(e.target.value)}
+						></input>
+						<button onClick={getDefinition}>Search</button>
+						<p>{definitions ? `Definition: ${definitions}` : ''}</p>
+						<p>{synonyms.length > 1 ? `Synonyms: ${synonyms[0] + ', ' + synonyms[1]}` : ''}</p>
+					</div>
+
+					<button className='accordion'>Readability</button>
+					<div className='panel'>
+						<button onClick={handleScan}>Scan</button>
+						<p>
+							{readability.FLESCH_READING
+								? `Flesch Reading Ease: ${readability.FLESCH_READING}`
+								: ''}
+						</p>
+						<p>
+							{readability.FLESCH_KINCAID
+								? `Flesch Kincaid Grade Level: ${readability.FLESCH_KINCAID}`
+								: ''}
+						</p>
+						<p>
+							{readability.GUNNING_FOG
+								? `Gunning Fog Index: ${readability.GUNNING_FOG}`
+								: ''}
+						</p>
+						<p>
+							{readability.COLEMAN_LIAU
+								? `Coleman-Liau Index: ${readability.COLEMAN_LIAU}`
+								: ''}
+						</p>
 					</div>
 				</div>
 			</div>

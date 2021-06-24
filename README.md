@@ -26,6 +26,7 @@ npm install
 ```
 npm run
 ```
+* Visit app at: localhost:3000
 
 ## Help
 

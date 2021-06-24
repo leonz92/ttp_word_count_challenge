@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+2. Word Count Challenge
+# TTP Word Count Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a text analyzer. It can take a body of text and return a number of statistics such as character count, word count, sentence count, etc. It can also scan the text and assess the readability of the text. There are 4 different measures of readability included in the scan. Another feature is the dictionary and thesaurus tool. You can enter a word into the search and it will return the definition and some synonyms as well. The Read Aloud button will read out loud any textr that is highlighted or if no text is highlighted, it reads the text in the input by default.
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+### Dependencies
 
-### `yarn start`
+* Works best with Chrome browser
+* NodeJS
+* npm
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Installing
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* Clone repo onto your machine.
+* Open in your favorite code editor
+* Install dependencies by entering the following into the command line:
+```
+npm install
+```
 
-### `yarn test`
+### Executing Program
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Run the program with the following command:
+```
+npm run
+```
 
-### `yarn build`
+## Help
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* If read aloud feature stops working, please try closing the tab and trying again. That feature is still in experimental phase.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Authors
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Leon Zhao
+(linkedin.com/in/lzhao92)
 
-### `yarn eject`
+## Version
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* 0.2
+    * Various style changes and fixes
+* 0.1 
+    * Initial release

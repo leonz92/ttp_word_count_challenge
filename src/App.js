@@ -1,6 +1,5 @@
 import './App.css';
 import React, { useState } from 'react';
-// import getDefinition from './services/word';
 
 function App () {
   const [charCount, setCharCount] = useState(0);
@@ -90,9 +89,7 @@ function App () {
 		)
       .then((response) => response.json())
       .then(res => {
-        // console.log(res);
         setReadability(res);
-        console.log(readability);
       })
 			.catch((err) => {
 				console.error(err);

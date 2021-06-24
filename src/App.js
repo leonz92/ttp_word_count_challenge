@@ -102,22 +102,24 @@ function App () {
 	return (
 		<div className='App'>
 			<header className='App-header'>TTP Word Count Challenge</header>
-			<div id='grid'>
-				<div id='left'>
-					<form id='input-text-form'>
+			<div className='grid'>
+				<div className='left'>
+					<form className='input-text-form'>
 						<label>Input Text Here:</label>
 						<textarea id='input-text'></textarea>
-						<div id='left-buttons'>
-							<button onClick={handleReadAloud}>Read Aloud</button>
-							<button>Clear</button>
+						<div className='left-button-group'>
+							<button className='read-aloud-button' onClick={handleReadAloud}>
+								Read Aloud
+							</button>
+							<button className='clear-button'>Clear</button>
 						</div>
 					</form>
 				</div>
 
-				<div id='right'>
+				<div className='right'>
 					<button className='accordion'>Stats</button>
 					<div className='panel'>
-						<button onClick={handleAnalyze}>Analyze</button>
+						<button className='analyze-button' onClick={handleAnalyze}>Analyze</button>
 						<p>Character Count: {charCount}</p>
 						<p>Word Count: {wordCount}</p>
 						<p>Sentence Count: {sentenceCount}</p>
@@ -126,21 +128,25 @@ function App () {
 					</div>
 
 					<button className='accordion'>Dictionary</button>
-					<div className='panel'>
+					<div className='panel search-form'>
 						<label>Search Word</label>
 						<input
 							type='text'
 							value={searchWord}
 							onChange={(e) => setSearchWord(e.target.value)}
 						></input>
-						<button onClick={getDefinition}>Search</button>
+						<button className='search-button' onClick={getDefinition}>Search</button>
 						<p>{definitions ? `Definition: ${definitions}` : ''}</p>
-						<p>{synonyms.length > 1 ? `Synonyms: ${synonyms[0] + ', ' + synonyms[1]}` : ''}</p>
+						<p>
+							{synonyms.length > 1
+								? `Synonyms: ${synonyms[0] + ', ' + synonyms[1]}`
+								: ''}
+						</p>
 					</div>
 
 					<button className='accordion'>Readability</button>
 					<div className='panel'>
-						<button onClick={handleScan}>Scan</button>
+						<button className='scan-button' onClick={handleScan}>Scan</button>
 						<p>
 							{readability.FLESCH_READING
 								? `Flesch Reading Ease: ${readability.FLESCH_READING}`

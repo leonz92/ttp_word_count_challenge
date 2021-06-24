@@ -13,45 +13,90 @@
   color: white;
 }
 
-#grid {
+.grid {
   display: flex;
   flex-direction: row;
+  padding: 48px;
 }
 
-#input-text-form{
+.left,
+.right {
+  flex: 1 0 0;
+}
+
+.input-text-form {
   display: flex;
   flex-direction: column;
+  margin-right: 24px;
+}
+
+.input-text-form label {
+ text-align: left;
+ margin-bottom: 16px;
 }
 
 #input-text {
   width: 50vw;
   height: 75vh;
+  max-width: 400px;
 }
 
-#left-buttons {
+.left-button-group {
   display: flex;
   justify-content: space-between;
+  margin-top: 24px;
+}
+
+button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.read-aloud-button,
+.analyze-button,
+.search-button,
+.scan-button {
+  border: 1px solid #000;
+  color: #000;
+}
+
+.clear-button {
+  border: 1px solid #ff0000;
+  color: #ff0000;
 }
 
 .accordion {
+  display: block;
   background-color: #eee;
   color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 50vw;
   text-align: left;
   border: none;
   outline: none;
   transition: 0.4s;
+  width: 100%;
 }
 
 .active, .accordion:hover {
-  background-color: #ccc;
+  background-color: #efefef;
 }
 
 .panel {
-  padding: 0 18px;
+  padding: 16px;
   background-color: white;
   display: none;
   overflow: hidden;
+  text-align: left;
+}
+
+.search-form > * {
+  display: block;
+}
+
+.search-form input {
+  margin: 8px 0;
+  padding: 8px;
 }

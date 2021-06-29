@@ -5,7 +5,7 @@ function App () {
   const [charCount, setCharCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
   const [sentenceCount, setSentenceCount] = useState(0);
-	const [paraCount, setParaCount] = useState(0);
+  const [paraCount, setParaCount] = useState(0);
   const [bigramCount, setBigramCount] = useState(0);
   const [searchWord, setSearchWord] = useState('');
   const [definitions, setDefinitions] = useState('');
@@ -82,8 +82,8 @@ function App () {
 			{
 				method: 'POST',
 				headers: {
-					'x-rapidapi-key': 'c2327d20c8msh05aae38bc671015p194bdajsn76c08a1cb8ba',
-					'x-rapidapi-host': 'ipeirotis-readability-metrics.p.rapidapi.com',
+					'x-rapidapi-key': process.env.REACT_APP_READABILITY_KEY,
+					'x-rapidapi-host': process.env.REACT_APP_READABILITY_HOST,
 				},
 			}
 		)
